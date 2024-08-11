@@ -1,5 +1,7 @@
 package com.ratna.harry_potter;
 
+import static com.ratna.harry_potter.endpoint.GET_HOUSES;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.GridView;

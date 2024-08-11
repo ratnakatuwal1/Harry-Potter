@@ -1,5 +1,7 @@
 package com.ratna.harry_potter;
 
+import static com.ratna.harry_potter.endpoint.ALL_CHARACTERS;
+
 import android.os.Bundle;
 import android.util.Log;
 
