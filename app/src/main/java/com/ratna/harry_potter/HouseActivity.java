@@ -5,6 +5,7 @@ import static com.ratna.harry_potter.endpoint.GET_HOUSES;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.GridView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ratna.harry_potter.adapter.CharacterAdapter;
+import com.ratna.harry_potter.adapter.HouseAdapter;
 import com.ratna.harry_potter.models.HarryPotterCharacter;
 import com.ratna.harry_potter.models.House;
 
@@ -39,6 +41,7 @@ public class HouseActivity extends AppCompatActivity {
     private ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
     RecyclerView recyclerView;
     private CharacterAdapter characterAdapter;
+    private HouseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,34 @@ public class HouseActivity extends AppCompatActivity {
         houseList.add(new House("Hufflepuff", R.drawable.ic_house_hufflepuff));
         houseList.add(new House("Ravenclaw", R.drawable.ic_house_ravenclaw));
         houseList.add(new House("Slytherin", R.drawable.ic_house_slytherin));
+
+        adapter = new HouseAdapter(HouseActivity.this, houseList);
+        gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener((adapterView, view, position, id) -> {
+           String selectedHouse = "";
+            switch (position){
+                case 0:
+                    requestTOServer("Gryffindor");
+                    selectedHouse = "Gryffindor";
+                    break;
+                case 1:
+                    requestTOServer("Hufflepuff");
+                    selectedHouse = "Hufflepuff";
+                    break;
+                case 2:
+                    requestTOServer(selectedHouse);
+                    selectedHouse = "Ravenclaw";
+                    break;
+                case 3:
+                    requestTOServer(selectedHouse);
+                    selectedHouse = "Slytherin";
+                    break;
+            }
+
+            textView.setText("Selected House: " + selectedHouse);
+
+        });
 
     }
 
