@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
 //        mediaPlayer.start();
 
         // All Characters, Hogwarts Students, Hogwarts Staff, Houses, Spells, Quiz
-         String[] items = {
-                    "All Characters",
-                    "Hogwarts Students",
-                    "Hogwarts Staff",
-                    "Houses",
-                    "Spells",
-                    "Quiz"
-            };
+        String[] items = {
+                "All Characters",
+                "Hogwarts Students",
+                "Hogwarts Staff",
+                "Houses",
+                "Spells",
+                "Quiz"
+        };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.item_basic_view, R.id.itemGrid, items);
         gridView.setAdapter(adapter);
@@ -58,29 +58,29 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 1:
                     break;
-                case 3:
+                case 2:
                     intent = new Intent(MainActivity.this, HouseActivity.class);
                     startActivity(intent);
+                    break;
+                case 3:
                     break;
                 case 4:
                     break;
                 case 5:
                     break;
-                case 6:
-                    break;
-        }
-    }
-
-
-        @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mediaPlayer != null) {
-            if (mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
             }
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
+        });
+
+//        @Override
+//        protected void onDestroy() {
+//            super.onDestroy();
+//            if (mediaPlayer != null) {
+//                if (mediaPlayer.isPlaying()) {
+//                    mediaPlayer.stop();
+//                }
+//                mediaPlayer.release();
+//                mediaPlayer = null;
+//            }
+//        }
     }
 }
