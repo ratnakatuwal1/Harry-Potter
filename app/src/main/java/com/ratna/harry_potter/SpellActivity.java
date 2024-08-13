@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ratna.harry_potter.adapter.SpellAdapter;
 import com.ratna.harry_potter.models.Spell;
 
 import org.json.JSONArray;
@@ -31,6 +33,8 @@ public class SpellActivity extends AppCompatActivity {
     // private SpellAdapter spellAdapter;
     // create spell adapter here // item_spell already created
     private ArrayList<Spell> spellList;
+    RecyclerView.LayoutManager layoutManager;
+    SpellAdapter spellAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +42,17 @@ public class SpellActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_spell);
         spellList = new ArrayList<Spell>();
+        recyclerView = findViewById(R.id.allSpellRecyclerView);
+        layoutManager = new LinearLayoutManager(SpellActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        requestTOServer();
         // set adapter and view type of recylyer here and reqeuest to server
 
 
     }
 
-    void requestTOServer(){
+    void requestTOServer() {
 
 
         RequestQueue queue = Volley.newRequestQueue(SpellActivity.this);
@@ -69,13 +78,12 @@ public class SpellActivity extends AppCompatActivity {
                                 Spell spell = new Spell(id, name, description);
 
 
-
                                 spellList.add(spell);
 
                             }
 
-//                            spellAdapter = new SpellAdapter( spellList);
-//                            recyclerView.setAdapter(spellAdapter);
+                            spellAdapter = new SpellAdapter(SpellActivity.this, spellList);
+                            recyclerView.setAdapter(spellAdapter);
 
 //                            characterAdapter = new CharacterAdapter(StaffActivity.this, characterList);
 //                            recyclerView.setAdapter(characterAdapter);

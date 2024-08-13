@@ -55,18 +55,28 @@ public class MainActivity extends AppCompatActivity {
             Intent intent;
             switch (position) {
                 case 0:
+                    intent = new Intent(MainActivity.this, CharacterActivity.class);
+                    startActivity(intent);
                     break;
                 case 1:
+                    intent = new Intent(MainActivity.this, StudentActivity.class);
+                    startActivity(intent);
                     break;
                 case 2:
-                    intent = new Intent(MainActivity.this, HouseActivity.class);
+                    intent = new Intent(MainActivity.this, StaffActivity.class);
                     startActivity(intent);
                     break;
                 case 3:
+                    intent = new Intent(MainActivity.this, HouseActivity.class);
+                    startActivity(intent);
                     break;
                 case 4:
+                    intent = new Intent(MainActivity.this, SpellActivity.class);
+                    startActivity(intent);
                     break;
                 case 5:
+                    intent = new Intent(MainActivity.this, QuizActivity.class);
+                    startActivity(intent);
                     break;
             }
         });

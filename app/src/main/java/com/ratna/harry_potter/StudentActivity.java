@@ -102,6 +102,8 @@ public class StudentActivity extends AppCompatActivity {
 
                                 characterList.add(character);
                             }
+                            characterAdapter = new CharacterAdapter(StudentActivity.this, characterList);
+                            recyclerView.setAdapter(characterAdapter);
 
                             //TODO
                             //SET ADAPATE HERE I.E CHARACTER ADAPTER

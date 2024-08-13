@@ -27,12 +27,15 @@ public class CharacterActivity extends AppCompatActivity {
     private ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CharacterAdapter characterAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_character);
+        recyclerView = findViewById(R.id.characterRecyclerView);
+
         //ToDo
 
         requestToServer();
@@ -85,6 +88,9 @@ public class CharacterActivity extends AppCompatActivity {
 
                     characterList.add(character);
                 }
+
+                characterAdapter = new CharacterAdapter(CharacterActivity.this, characterList);
+                recyclerView.setAdapter(characterAdapter);
 
                 //todo
 
