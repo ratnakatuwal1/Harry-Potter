@@ -2,9 +2,39 @@ package com.ratna.harry_potter.datas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class HarryPotterQuestionBank {
     //ToDo
+    private int getRandom(){
+        Random random = new Random();
+        int num = random.nextInt(400);
+        return num;
+    }
+
+    public  ArrayList<Integer> questionNumbers (int totalQuestion) {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        int count = 0;
+        while (count < totalQuestion) {
+            int num = getRandom();
+            if (!numbers.contains(num)) {
+                numbers.add(num);
+                count++;
+            }
+        }
+        return numbers;
+    }
+
+    public  ArrayList<HarryPotterQuiz> getQuiz(ArrayList<Integer> totalQuestions) {
+        ArrayList<HarryPotterQuiz> selectedQuestions = new ArrayList<>();
+        ArrayList<HarryPotterQuiz> allQuestions = questionBank();
+
+        for (int i = 0; i < totalQuestions.size(); i++) {
+            HarryPotterQuiz harryPotterQuiz = allQuestions.get(totalQuestions.get(i));
+            selectedQuestions.add(harryPotterQuiz);
+        }
+        return selectedQuestions;
+    }
 
     private ArrayList<HarryPotterQuiz> questionBank() {
         ArrayList<HarryPotterQuiz> harryPotterQuizList = new ArrayList<>();

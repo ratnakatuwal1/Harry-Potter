@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ratna.harry_potter.adapter.QuizAdapter;
+import com.ratna.harry_potter.datas.HarryPotterQuestionBank;
 import com.ratna.harry_potter.datas.HarryPotterQuiz;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class QuizActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private QuizAdapter quizAdapter;
     private ArrayList<HarryPotterQuiz> questions;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class QuizActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_quiz);
         recyclerView = findViewById(R.id.Quizrecycler_view);
+        layoutManager = new LinearLayoutManager(QuizActivity.this);
 
 
         // write an algorthim to generte random harrypotter question
@@ -35,8 +38,20 @@ public class QuizActivity extends AppCompatActivity {
         // HarryPotterQuestionBank harryPotterQuiz = new HarryPotterQuestionBank();
         //
         //        questions =  get your questions from questionbanks.
-        quizAdapter = new QuizAdapter(this, questions);
-        recyclerView.setAdapter(quizAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        HarryPotterQuestionBank harryPotterQuestionBank = new HarryPotterQuestionBank();
+       ArrayList<Integer> questionNumbers = harryPotterQuestionBank.questionNumbers(10);
+       questions = harryPotterQuestionBank.getQuiz(questionNumbers);
+       quizAdapter = new QuizAdapter(QuizActivity.this, questions);
+       recyclerView.setAdapter(quizAdapter);
+
+
+//            ArrayList<Integer> questionNumbers = new ArrayList<>();
+//            harryPotterQuestionBank.questionNumbers(10);
+
+
+        }
+//        quizAdapter = new QuizAdapter(this, questions);
+//        recyclerView.setAdapter(quizAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-}
