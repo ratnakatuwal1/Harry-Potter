@@ -1,5 +1,6 @@
 package com.ratna.harry_potter.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -19,8 +20,8 @@ import com.ratna.harry_potter.models.HarryPotterCharacter;
 import java.util.ArrayList;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
-    private Context context;
-    private ArrayList<HarryPotterCharacter> characterList;
+    Context context;
+    ArrayList<HarryPotterCharacter> characterList;
 
     public CharacterAdapter(Context context, ArrayList<HarryPotterCharacter> characterList) {
         this.context = context;
@@ -34,8 +35,9 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         return new CharacterViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull CharacterAdapter.CharacterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
 HarryPotterCharacter character = characterList.get(position);
 
 holder.characterName.setText(character.getName());
@@ -69,7 +71,7 @@ holder.itemView.setOnClickListener(view -> {
         return characterList.size();
     }
 
-    public class CharacterViewHolder extends RecyclerView.ViewHolder {
+    public static class CharacterViewHolder extends RecyclerView.ViewHolder {
         ImageView characterImage;
         TextView characterName;
         TextView actorName;

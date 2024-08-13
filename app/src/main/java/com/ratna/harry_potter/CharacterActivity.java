@@ -7,11 +7,13 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ratna.harry_potter.adapter.CharacterAdapter;
@@ -24,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class CharacterActivity extends AppCompatActivity {
-    private ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
+    ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CharacterAdapter characterAdapter;
     RecyclerView.LayoutManager layoutManager;
@@ -35,6 +37,8 @@ public class CharacterActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_character);
         recyclerView = findViewById(R.id.characterRecyclerView);
+        layoutManager = new LinearLayoutManager(CharacterActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
 
         //ToDo
 
@@ -42,7 +46,7 @@ public class CharacterActivity extends AppCompatActivity {
     }
     void requestToServer(){
         RequestQueue queue = Volley.newRequestQueue(CharacterActivity.this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, ALL_CHARACTERS, (Response.Listener<String>) response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, ALL_CHARACTERS, response -> {
             Log.d("ServerResponse", response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
@@ -97,11 +101,8 @@ public class CharacterActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, (Response.ErrorListener) error -> {
-            Log.e("ServerResponse", "Error: " + error.getMessage());
-        });
-
-        queue.add(stringRequest);
+        }, error -> Log.e("ServerResponse", "Error: " + error.getMessage()));
+                queue.add(stringRequest);
     }
 
     private ArrayList<String> convertJsonArrayToArrayList(JSONArray jsonArray) throws JSONException{

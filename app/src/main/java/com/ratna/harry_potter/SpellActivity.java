@@ -60,46 +60,38 @@ public class SpellActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 ALL_SPELL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("ServerResponse", response);
+                response -> {
+                    Log.d("ServerResponse", response);
 
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = new JSONObject(String.valueOf(jsonArray.get(i)));
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = new JSONObject(String.valueOf(jsonArray.get(i)));
 
-                                String id = jsonObject.getString("id");
-                                String name = jsonObject.getString("name");
-                                String description = jsonObject.getString("description");
+                            String id = jsonObject.getString("id");
+                            String name = jsonObject.getString("name");
+                            String description = jsonObject.getString("description");
 
 
-                                Spell spell = new Spell(id, name, description);
+                            Spell spell = new Spell(id, name, description);
 
 
-                                spellList.add(spell);
+                            spellList.add(spell);
 
-                            }
+                        }
 
-                            spellAdapter = new SpellAdapter(SpellActivity.this, spellList);
-                            recyclerView.setAdapter(spellAdapter);
+                        spellAdapter = new SpellAdapter(SpellActivity.this, spellList);
+                        recyclerView.setAdapter(spellAdapter);
 
 //                            characterAdapter = new CharacterAdapter(StaffActivity.this, characterList);
 //                            recyclerView.setAdapter(characterAdapter);
-                            // Handle the ArrayList of characters here (e.g., update UI)
+                        // Handle the ArrayList of characters here (e.g., update UI)
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("ServerResponse", "Error: " + error.getMessage());
-                    }
-                }
+                error -> Log.e("ServerResponse", "Error: " + error.getMessage())
         );
 
         queue.add(stringRequest);

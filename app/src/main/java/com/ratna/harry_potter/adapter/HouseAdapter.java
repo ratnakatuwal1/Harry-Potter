@@ -42,10 +42,10 @@ public class HouseAdapter extends ArrayAdapter<House> {
         View view = inflater.inflate(R.layout.house_item, null, true);
         House house = houseList.get(position);
 
-        TextView hoseName = view.findViewById(R.id.house_name);
+        TextView houseName = view.findViewById(R.id.house_name);
         ImageView imageView = view.findViewById(R.id.house_image);
 
-        hoseName.setText(house.getName());
+        houseName.setText(house.getName());
         imageView.setImageResource(house.getImage());
         return view;
     }

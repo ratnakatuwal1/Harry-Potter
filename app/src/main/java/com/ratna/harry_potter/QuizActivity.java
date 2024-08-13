@@ -17,10 +17,10 @@ import com.ratna.harry_potter.datas.HarryPotterQuiz;
 import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private QuizAdapter quizAdapter;
-    private ArrayList<HarryPotterQuiz> questions;
-    private RecyclerView.LayoutManager layoutManager;
+    RecyclerView recyclerView;
+    QuizAdapter quizAdapter;
+    ArrayList<HarryPotterQuiz> questions;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         recyclerView = findViewById(R.id.Quizrecycler_view);
         layoutManager = new LinearLayoutManager(QuizActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
 
 
         // write an algorthim to generte random harrypotter question

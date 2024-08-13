@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -28,9 +29,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class StudentActivity extends AppCompatActivity {
-    private ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private CharacterAdapter characterAdapter;
+    ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
+    RecyclerView recyclerView;
+    CharacterAdapter characterAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,9 @@ public class StudentActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_student);
         recyclerView = findViewById(R.id.allStudentsRecyclerView);
+        layoutManager = new LinearLayoutManager(StudentActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+
         //TODO
         // SET LAYOUT FOR RECYCLER VIEW I.E LINEAR LAYOUT
         requestTOServer();
@@ -115,12 +120,7 @@ public class StudentActivity extends AppCompatActivity {
                         }
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("ServerResponse", "Error: " + error.getMessage());
-                    }
-                }
+                error -> Log.e("ServerResponse", "Error: " + error.getMessage())
         );
 
         queue.add(stringRequest);

@@ -27,7 +27,7 @@ public class SpellAdapter extends RecyclerView.Adapter<SpellAdapter.SpellViewHol
 
     @NonNull
     @Override
-    public SpellAdapter.SpellViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SpellViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(activity);
         View view = inflater.inflate(R.layout.item_spell, parent, false);
         SpellViewHolder spellViewHolder = new SpellViewHolder(view);

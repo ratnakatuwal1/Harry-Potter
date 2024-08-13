@@ -1,9 +1,9 @@
 package com.ratna.harry_potter.models;
 
 public class Spell {
-    private String id;
-    private String name;
-    private String description;
+    String id;
+    String name;
+    String description;
 
     public Spell(String id, String name, String description){
         this.id = id;

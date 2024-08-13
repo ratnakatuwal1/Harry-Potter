@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         gridView = findViewById(R.id.homeGridView);
 //DO THIS ONLY IF YOU WANT TO PLAY BACKGROUND MUSIC and when app is completely built;
-//        mediaPlayer = MediaPlayer.create(this, R.raw.harry_potter_theme);
-//        mediaPlayer.setLooping(true); // Optional: to loop the music
-//        mediaPlayer.start();
+        mediaPlayer = MediaPlayer.create(this, R.raw.harry_potter_theme);
+        mediaPlayer.setLooping(true); // Optional: to loop the music
+        mediaPlayer.start();
 
         // All Characters, Hogwarts Students, Hogwarts Staff, Houses, Spells, Quiz
         String[] items = {
@@ -80,17 +80,17 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         });
-
-//        @Override
-//        protected void onDestroy() {
-//            super.onDestroy();
-//            if (mediaPlayer != null) {
-//                if (mediaPlayer.isPlaying()) {
-//                    mediaPlayer.stop();
-//                }
-//                mediaPlayer.release();
-//                mediaPlayer = null;
-//            }
-//        }
     }
-}
+
+        @Override
+        protected void onDestroy() {
+            super.onDestroy();
+            if (mediaPlayer != null) {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                }
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+        }
+    }

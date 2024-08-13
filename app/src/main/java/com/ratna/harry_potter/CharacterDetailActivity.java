@@ -1,5 +1,6 @@
 package com.ratna.harry_potter;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class CharacterDetailActivity extends AppCompatActivity {
     ImageView characterImage;
     TextView characterName, actorName, dateOfBirth, gender, house, species, ancestry, eyeColour, hairColour, patronus, wand, alive;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

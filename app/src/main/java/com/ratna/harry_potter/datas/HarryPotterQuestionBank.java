@@ -1,5 +1,7 @@
 package com.ratna.harry_potter.datas;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -22,18 +24,22 @@ public class HarryPotterQuestionBank {
                 count++;
             }
         }
+        Log.d("QuestionNumbers:",numbers.toString());
         return numbers;
     }
 
-    public  ArrayList<HarryPotterQuiz> getQuiz(ArrayList<Integer> totalQuestions) {
-        ArrayList<HarryPotterQuiz> selectedQuestions = new ArrayList<>();
-        ArrayList<HarryPotterQuiz> allQuestions = questionBank();
+    public  ArrayList<HarryPotterQuiz> getQuiz(ArrayList<Integer> totalQuestion) {
+        ArrayList<HarryPotterQuiz> selectedQuestion = new ArrayList<>();
+        ArrayList<HarryPotterQuiz> allQuestion = questionBank();
 
-        for (int i = 0; i < totalQuestions.size(); i++) {
-            HarryPotterQuiz harryPotterQuiz = allQuestions.get(totalQuestions.get(i));
-            selectedQuestions.add(harryPotterQuiz);
+        for (int i = 0; i < totalQuestion.size(); i++) {
+            Log.d("TotalQuestion:",totalQuestion.toString());
+            int questionNumber = totalQuestion.get(i);
+            Log.d("QuestionGet",questionNumber+"");
+            HarryPotterQuiz harryPotterQuiz = allQuestion.get(questionNumber);
+            selectedQuestion.add(harryPotterQuiz);
         }
-        return selectedQuestions;
+        return selectedQuestion;
     }
 
     private ArrayList<HarryPotterQuiz> questionBank() {

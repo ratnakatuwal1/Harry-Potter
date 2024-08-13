@@ -25,7 +25,10 @@
 
     <GridView
         android:id="@+id/homeGridView"
-        android:numColumns="2"
+        android:numColumns="3"
+        android:textSize="28sp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
