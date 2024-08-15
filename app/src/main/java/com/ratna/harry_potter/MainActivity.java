@@ -3,21 +3,15 @@ package com.ratna.harry_potter;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private GridView gridView;
-    // gridview variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +19,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         mediaPlayer = MediaPlayer.create(this, R.raw.harry_potter_theme);
-        mediaPlayer.setLooping(true); // Optional: to loop the music
+        mediaPlayer.setLooping(true);
         mediaPlayer.start();
         gridView = findViewById(R.id.homeGridView);
-//DO THIS ONLY IF YOU WANT TO PLAY BACKGROUND MUSIC and when app is completely built;
 
 
-        // All Characters, Hogwarts Students, Hogwarts Staff, Houses, Spells, Quiz
         String[] items = {
                 "All Characters",
                 "Hogwarts Students",
@@ -44,14 +36,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.item_basic_view, R.id.itemGrid, items);
         gridView.setAdapter(adapter);
 
-        // at gridview.SETONITEMLISTENER will go to 6 different activiteies i.e
-// CharacterActivity.class
-//StudentActivity.class
-//StaffActivity.class
-//HousesActivity.class
-//SpellActivity.class
-//QuizActivity
-//  gridView = findViewById(R.id.homeGridView);
+
+
         gridView.setOnItemClickListener((adapterView, view, position, id) -> {
             Intent intent;
             switch (position) {
@@ -85,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Pause the media player when the app goes into the background
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
         }
@@ -94,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Resume playing the media when the app returns to the foreground
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
         }
@@ -103,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Release the media player when the activity is destroyed
         if (mediaPlayer != null) {
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.stop();

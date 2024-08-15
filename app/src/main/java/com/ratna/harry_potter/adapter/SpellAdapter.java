@@ -18,7 +18,7 @@ public class SpellAdapter extends RecyclerView.Adapter<SpellAdapter.SpellViewHol
     Activity activity;
     ArrayList<Spell> spells;
 
-    public SpellAdapter(Activity activity, ArrayList<Spell> spells){
+    public SpellAdapter(Activity activity, ArrayList<Spell> spells) {
         this.activity = activity;
         this.spells = spells;
 

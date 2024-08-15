@@ -38,32 +38,32 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-HarryPotterCharacter character = characterList.get(position);
+        HarryPotterCharacter character = characterList.get(position);
 
-holder.characterName.setText(character.getName());
-holder.actorName.setText("Played by: " + character.getActor());
-holder.dateOfBirth.setText("DOB: " + character.getDateOfBirth());
-holder.gender.setText("Gender: " +character.getGender());
-holder.house.setText("House: " + character.getHouse());
+        holder.characterName.setText(character.getName());
+        holder.actorName.setText("Played by: " + character.getActor());
+        holder.dateOfBirth.setText("DOB: " + character.getDateOfBirth());
+        holder.gender.setText("Gender: " + character.getGender());
+        holder.house.setText("House: " + character.getHouse());
 
-StringBuilder akaBuilder = new StringBuilder("A.K.A: ");
-for (String name : character.getAlternate_names()) {
-    akaBuilder.append(name).append(", ");
-}
-if (akaBuilder.length() > 0) {
-    akaBuilder.setLength(akaBuilder.length() - 2);
-}
-holder.alternateNames.setText(akaBuilder.toString());
+        StringBuilder akaBuilder = new StringBuilder("A.K.A: ");
+        for (String name : character.getAlternate_names()) {
+            akaBuilder.append(name).append(", ");
+        }
+        if (akaBuilder.length() > 0) {
+            akaBuilder.setLength(akaBuilder.length() - 2);
+        }
+        holder.alternateNames.setText(akaBuilder.toString());
 
-Glide.with(context)
-.load(character.getImage())
-.into(holder.characterImage);
+        Glide.with(context)
+                .load(character.getImage())
+                .into(holder.characterImage);
 
-holder.itemView.setOnClickListener(view -> {
-    Intent intent = new Intent(context, CharacterDetailActivity.class);
-    intent.putExtra("character", character);
-    context.startActivity(intent);
-});
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, CharacterDetailActivity.class);
+            intent.putExtra("character", character);
+            context.startActivity(intent);
+        });
     }
 
     @Override

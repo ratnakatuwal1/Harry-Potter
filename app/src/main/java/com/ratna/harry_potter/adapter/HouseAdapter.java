@@ -1,7 +1,6 @@
 package com.ratna.harry_potter.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import com.ratna.harry_potter.R;
 import com.ratna.harry_potter.models.House;
 
 import java.util.ArrayList;
-
-import kotlinx.coroutines.internal.LockFreeLinkedListNode;
 
 public class HouseAdapter extends ArrayAdapter<House> {
     ArrayList<House> houseList;

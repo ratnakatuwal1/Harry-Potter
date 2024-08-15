@@ -37,9 +37,9 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder holder, int position) {
-HarryPotterQuiz quiz = quizList.get(position);
-int questionNumber = position + 1;
-holder.questionText.setText(questionNumber+". "+ quiz.getQuestion());
+        HarryPotterQuiz quiz = quizList.get(position);
+        int questionNumber = position + 1;
+        holder.questionText.setText(questionNumber + ". " + quiz.getQuestion());
 
         List<String> choices = quiz.getChoices();
         holder.option1.setText(choices.get(0));
@@ -70,8 +70,8 @@ holder.questionText.setText(questionNumber+". "+ quiz.getQuestion());
     }
 
     @SuppressLint("SetTextI18n")
-    public void handleAnswer(QuizViewHolder holder, int selectedIndex, int correctAnswerPosition, List<String> choice){
-        if (selectedIndex == correctAnswerPosition){
+    public void handleAnswer(QuizViewHolder holder, int selectedIndex, int correctAnswerPosition, List<String> choice) {
+        if (selectedIndex == correctAnswerPosition) {
             holder.feedbackText.setText("Correct");
             holder.feedbackText.setTextColor(Color.GREEN);
         } else {

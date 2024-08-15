@@ -7,16 +7,13 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ratna.harry_potter.adapter.CharacterAdapter;
@@ -43,16 +40,13 @@ public class StaffActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(StaffActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
-        //TODO
-        // SET LAYOUT FOR RECYCLER VIEW I.E LINEAR LAYOUT
-
 
         requestTOServer();
 
     }
 
 
-    void requestTOServer(){
+    void requestTOServer() {
 
 
         RequestQueue queue = Volley.newRequestQueue(StaffActivity.this);
@@ -79,7 +73,7 @@ public class StaffActivity extends AppCompatActivity {
                             if (jsonObject.has("yearOfBirth") && !jsonObject.isNull("yearOfBirth")) {
                                 character.setYearOfBirth(jsonObject.getInt("yearOfBirth"));
                             } else {
-                                character.setYearOfBirth(0); // or some default value or handling
+                                character.setYearOfBirth(0);
                             }
 
                             character.setWizard(jsonObject.getBoolean("wizard"));
@@ -94,7 +88,7 @@ public class StaffActivity extends AppCompatActivity {
                             if (wandObject.has("length") && !wandObject.isNull("length")) {
                                 wand.setLength(wandObject.getInt("length"));
                             } else {
-                                wand.setLength(0); // or some default value or handling
+                                wand.setLength(0);
                             }
                             character.setWand(wand);
 
@@ -111,10 +105,6 @@ public class StaffActivity extends AppCompatActivity {
                         characterAdapter = new CharacterAdapter(StaffActivity.this, characterList);
                         recyclerView.setAdapter(characterAdapter);
 
-
-                        //TODO
-                        //SET ADAPATE HERE I.E CHARACTER ADAPTER
-                        // set adapter to recycler view
 
                     } catch (JSONException e) {
                         e.printStackTrace();

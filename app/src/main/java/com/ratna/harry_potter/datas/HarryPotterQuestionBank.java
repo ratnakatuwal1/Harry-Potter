@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class HarryPotterQuestionBank {
-    //ToDo
     private int getRandom(){
         Random random = new Random();
         int num = random.nextInt(400);

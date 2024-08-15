@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ratna.harry_potter.adapter.CharacterAdapter;
@@ -40,11 +38,11 @@ public class CharacterActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(CharacterActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
-        //ToDo
 
         requestToServer();
     }
-    void requestToServer(){
+
+    void requestToServer() {
         RequestQueue queue = Volley.newRequestQueue(CharacterActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, ALL_CHARACTERS, response -> {
             Log.d("ServerResponse", response);
@@ -102,10 +100,10 @@ public class CharacterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, error -> Log.e("ServerResponse", "Error: " + error.getMessage()));
-                queue.add(stringRequest);
+        queue.add(stringRequest);
     }
 
-    private ArrayList<String> convertJsonArrayToArrayList(JSONArray jsonArray) throws JSONException{
+    private ArrayList<String> convertJsonArrayToArrayList(JSONArray jsonArray) throws JSONException {
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             arrayList.add(jsonArray.getString(i));

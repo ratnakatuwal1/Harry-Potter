@@ -5,21 +5,15 @@ import static com.ratna.harry_potter.endpoint.GET_HOUSES;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.GridView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ratna.harry_potter.adapter.CharacterAdapter;
@@ -35,7 +29,6 @@ import java.util.ArrayList;
 
 public class HouseActivity extends AppCompatActivity {
     GridView gridView;
-    //HouseAdapter houseAdapter;
     private ArrayList<House> houseList;
     TextView textView;
     private ArrayList<HarryPotterCharacter> characterList = new ArrayList<>();
@@ -118,7 +111,7 @@ public class HouseActivity extends AppCompatActivity {
                             if (jsonObject.has("yearOfBirth") && !jsonObject.isNull("yearOfBirth")) {
                                 character.setYearOfBirth(jsonObject.getInt("yearOfBirth"));
                             } else {
-                                character.setYearOfBirth(0); // or some default value or handling
+                                character.setYearOfBirth(0);
                             }
 
                             character.setWizard(jsonObject.getBoolean("wizard"));
@@ -133,7 +126,7 @@ public class HouseActivity extends AppCompatActivity {
                             if (wandObject.has("length") && !wandObject.isNull("length")) {
                                 wand.setLength(wandObject.getInt("length"));
                             } else {
-                                wand.setLength(0); // or some default value or handling
+                                wand.setLength(0);
                             }
                             character.setWand(wand);
 
@@ -150,7 +143,7 @@ public class HouseActivity extends AppCompatActivity {
 
                         characterAdapter = new CharacterAdapter(HouseActivity.this, characterList);
                         recyclerView.setAdapter(characterAdapter);
-                        // Handle the ArrayList of characters here (e.g., update UI)
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();

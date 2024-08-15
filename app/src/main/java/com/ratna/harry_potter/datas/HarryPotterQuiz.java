@@ -6,6 +6,7 @@ public class HarryPotterQuiz {
     private int id;
     private String question;
 
+
     public int getId(){
         return id;
     }
@@ -55,5 +56,6 @@ public class HarryPotterQuiz {
         this.choices = choices;
         this.correctAnswer = correctAnswer;
         this.selectedChoice = -1;
+
     }
 }

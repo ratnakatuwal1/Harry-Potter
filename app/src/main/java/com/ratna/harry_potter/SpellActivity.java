@@ -7,16 +7,13 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ratna.harry_potter.adapter.SpellAdapter;
@@ -30,8 +27,7 @@ import java.util.ArrayList;
 
 public class SpellActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    // private SpellAdapter spellAdapter;
-    // create spell adapter here // item_spell already created
+
     private ArrayList<Spell> spellList;
     RecyclerView.LayoutManager layoutManager;
     SpellAdapter spellAdapter;
@@ -47,7 +43,6 @@ public class SpellActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         requestTOServer();
-        // set adapter and view type of recylyer here and reqeuest to server
 
 
     }
@@ -83,9 +78,6 @@ public class SpellActivity extends AppCompatActivity {
                         spellAdapter = new SpellAdapter(SpellActivity.this, spellList);
                         recyclerView.setAdapter(spellAdapter);
 
-//                            characterAdapter = new CharacterAdapter(StaffActivity.this, characterList);
-//                            recyclerView.setAdapter(characterAdapter);
-                        // Handle the ArrayList of characters here (e.g., update UI)
 
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -7,9 +7,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.ratna.harry_potter.models.HarryPotterCharacter;
@@ -24,21 +21,21 @@ public class CharacterDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_character_detail);
-characterImage = findViewById(R.id.detail_character_image);
-characterName = findViewById(R.id.detail_character_name);
-actorName = findViewById(R.id.detail_actor_name);
-dateOfBirth = findViewById(R.id.detail_date_of_birth);
-gender = findViewById(R.id.detail_gender);
-house = findViewById(R.id.detail_house);
-species = findViewById(R.id.detail_species);
-ancestry = findViewById(R.id.detail_ancestry);
-eyeColour = findViewById(R.id.detail_eye_colour);
-hairColour = findViewById(R.id.detail_hair_colour);
-patronus = findViewById(R.id.detail_patronus);
-wand = findViewById(R.id.detail_wand);
-alive = findViewById(R.id.detail_alive);
+        characterImage = findViewById(R.id.detail_character_image);
+        characterName = findViewById(R.id.detail_character_name);
+        actorName = findViewById(R.id.detail_actor_name);
+        dateOfBirth = findViewById(R.id.detail_date_of_birth);
+        gender = findViewById(R.id.detail_gender);
+        house = findViewById(R.id.detail_house);
+        species = findViewById(R.id.detail_species);
+        ancestry = findViewById(R.id.detail_ancestry);
+        eyeColour = findViewById(R.id.detail_eye_colour);
+        hairColour = findViewById(R.id.detail_hair_colour);
+        patronus = findViewById(R.id.detail_patronus);
+        wand = findViewById(R.id.detail_wand);
+        alive = findViewById(R.id.detail_alive);
 
-HarryPotterCharacter character = (HarryPotterCharacter) getIntent().getSerializableExtra("character");
+        HarryPotterCharacter character = (HarryPotterCharacter) getIntent().getSerializableExtra("character");
         if (character != null) {
             Glide.with(this).load(character.getImage()).into(characterImage);
 
