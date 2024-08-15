@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        gridView = findViewById(R.id.homeGridView);
-//DO THIS ONLY IF YOU WANT TO PLAY BACKGROUND MUSIC and when app is completely built;
         mediaPlayer = MediaPlayer.create(this, R.raw.harry_potter_theme);
         mediaPlayer.setLooping(true); // Optional: to loop the music
         mediaPlayer.start();
+        gridView = findViewById(R.id.homeGridView);
+//DO THIS ONLY IF YOU WANT TO PLAY BACKGROUND MUSIC and when app is completely built;
+
 
         // All Characters, Hogwarts Students, Hogwarts Staff, Houses, Spells, Quiz
         String[] items = {
@@ -81,16 +82,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
-            if (mediaPlayer != null) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                }
-                mediaPlayer.release();
-                mediaPlayer = null;
-            }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Pause the media player when the app goes into the background
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Resume playing the media when the app returns to the foreground
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Release the media player when the activity is destroyed
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+}
